@@ -120,5 +120,6 @@ Here’s the upstream-downstream relationship:
 ### Diagram
 
 Let me create a simple diagram for this.
+file:///C:/Users/tcs/Downloads/DALL%C2%B7E%202024-10-06%2011.54.46%20-%20A%20simple%20diagram%20illustrating%20Jenkins%20upstream%20and%20downstream%20projects%20workflow.%20The%20diagram%20has%20three%20blocks%20aligned%20vertically%20with%20arrows%20between%20t.webp
 
 Here is a simple diagram illustrating the upstream and downstream project workflow in Jenkins. It shows how **Project A (Build)** triggers **Project B (Test)**, and once that completes, it triggers **Project C (Deploy)**. This visual represents the flow of jobs from building to testing and then deploying.

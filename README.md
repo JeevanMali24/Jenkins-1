@@ -1,6 +1,6 @@
 # Jenkins-1
 
-To schedule a project in Jenkins, you can use Jenkins' built-in "Build Triggers" feature. Here's how you can do it:
+# To schedule a project in Jenkins, you can use Jenkins' built-in "Build Triggers" feature. Here's how you can do it:
 
 ### Steps to Schedule a Project in Jenkins:
 1. **Access Jenkins Dashboard**:

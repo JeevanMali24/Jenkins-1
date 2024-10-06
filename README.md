@@ -100,7 +100,7 @@ Scheduling projects is particularly useful for tasks like:
 
 Let me know if you need more details on any part of this!
 
-Let me explain the concept of **upstream** and **downstream** projects in Jenkins with a visual aid:
+# Let me explain the concept of **upstream** and **downstream** projects in Jenkins with a visual aid:
 
 ### Concept Overview:
 - **Upstream Project**: A job that runs first and may trigger another job upon completion.

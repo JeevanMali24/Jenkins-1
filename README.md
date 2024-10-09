@@ -119,6 +119,7 @@ usermod -aG docker jenkins
 usermod -aG docker ubuntu
 systemctl restart docker
 ```
+Once your done then switch to the jenkins by su.
 ```
 usermode -aG docker jenkins
 su - jenkins

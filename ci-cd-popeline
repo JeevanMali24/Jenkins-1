@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    
+    tools{
+        maven "cloud"
+    }
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Git checkout hub') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Aseemakram19/maven-app.git'
+            }
+        }
+         stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage('Build_image') {
+            steps {
+                sh 'docker build -t apacheweb .'
+            }
+        }
+        stage('dockercontainer') {
+            steps {
+                sh 'docker run -d -p 9000:8080 -t apacheweb'
+            }
+        }
+    }
+}

@@ -1,6 +1,13 @@
 pipeline {
     agent any
-
+    
+    tools {
+        jdk 'jdk11'
+        maven 'maven3'
+    }
+    
+    environment {
+        scanner
     stages {
         stage('git checkout') {
             steps {
@@ -14,11 +21,11 @@ pipeline {
         }
         stage('Sonarqube Analysis') {
             steps {
-                sh '''$SCANNER/bin/sonar-sonar-scanner /
-                -Dsonar.url=(---------url sonar----------) /
-                -Dsonar.login=(-------pest token---------) /
-                -Dsonar.projectName=shopping-cart /
-                -Dsonar.java.binaries=. /
+                sh '''$SCANNER/bin/sonar-scanner \
+                -Dsonar.url=http://13.233.197.115:9000 \
+                -Dsonar.login=squ_79caf9778af586204974fda42dd1a0713081cbf8 \
+                -Dsonar.projectName=shopping-cart \
+                -Dsonar.java.binaries= . \
                 -Dsonar.projectkey=shopping-cart '''
             }
         }

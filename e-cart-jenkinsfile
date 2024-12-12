@@ -23,11 +23,36 @@ pipeline {
         }
         stage('sonarqube analysis') {
             steps {
-                sh """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.url=http://13.233.197.115:9000/ \
-                        -Dsonar.login=squ_00211bcda119817e073927baf2b3f0c58c6ebeed \
+                sh """ $SCANNER_HOME/bin/sonar-scanner -Dsonar.url=http://3.110.77.87:9000/ \
+                        -Dsonar.login=squ_79caf9778af586204974fda42dd1a0713081cbf8 \
                         -Dsonar.projectName=ekart \
                         -Dsonar.java.binaries=. \
                         -Dsonar.projectKey=ekart """
+            
+            }
+        }
+        stage('OWASP SCAN') {
+            steps {
+               dependencyCheck additionalArguments: ' --scan ./', odcInstallation: 'DP'
+               dependencyCheckPublisher pattern; '**/dependency-check-report.xml'
+            }
+        }
+        stage('Buile & Push Docker Image') {
+            steps {
+                script{
+                  // This step should not normally be used in your script. Consult the inline help for details.
+                     withDockerRegistry(credentialsId: 'dockerid', toolName: 'Docker') {
+                     sh 'docker build -t shopping:latest -f Docker/Dockerfile .'
+                     sh 'docker tag shopping:latest adijaiswal/shopping:latest'
+                     sh 'docker push yuvrajdocker001/shopping:latest'
+                    }   
+                }
+            
+            }
+        }
+        stage('Trigger CD Pipeline') {
+            steps {
+                build jobe: "CD_Pipeline" , wait: true
             
             }
         }

@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('HeDocker Deploy To Containerllo') {
+            steps {
+                // This step should not normally be used in your script. Consult the inline help for details.
+                      withDockerRegistry(credentialsId: 'dockerid', toolName: 'Docker') {
+                       sh 'docker run -d --name ekart -p 8070:8070 yuvrajdocker001/shopping:latest '
+                }
+            }
+        }
+    }
+}

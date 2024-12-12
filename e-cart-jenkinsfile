@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('git checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/jaiswaladi246/Ekart.git'
+            }
+        }
+        stage('compile') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        stage('Sonarqube Analysis') {
+            steps {
+                sh '''$SCANNER/bin/sonar-sonar-scanner /
+                -Dsonar.url=(---------url sonar----------) /
+                -Dsonar.login=(-------pest token---------) /
+                -Dsonar.projectName=shopping-cart /
+                -Dsonar.java.binaries=. /
+                -Dsonar.projectkey=shopping-cart '''
+            }
+        }
+    }
+}
